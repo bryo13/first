@@ -1,11 +1,26 @@
 %h3
+
 .row
  .small-9.column
   .tr
+   Course code:  
    .td=@assignment.course_code
-   .td=@assignment.course_name 
+   Course name:
+   .td=@assignment.course_name
+   Semister: 
    .td=@assignment.semister
+   Assignment Download Link:
    .td=link_to 'Download link',@assignment.attachment_url
+   
+   %br
+
+  .tr
+   Lectures details:
+   .td=@assignment.user.email
+   .td=@assignment.user.name
+
+
+   %br
    =link_to 'Edit',edit_assignment_path, class:'button success radius small'
    |
    =link_to 'Back',assignments_path, class:'button success radius small' 

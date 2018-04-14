@@ -1,7 +1,10 @@
 %h2 Assignments
 .row
  .small-7.column
+ 
   -@assignments.each do |assignment|
+   %li=assignment.course_name
+   
    =link_to assignment.course_code,assignment
    %br
 

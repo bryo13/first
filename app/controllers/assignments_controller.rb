@@ -9,17 +9,24 @@ class AssignmentsController < ApplicationController
 		@course_id = Course.find_by(name: params[:course]).id
 		@assignments = Assignment.where(course_id: @course_id).order("created_at DESC")
 	  end
+	 @assignments = Assignment.all.order("created_at DESC")
+      if params[:search]
+     @assignments= Assignment.search(params[:search]).order("created_at DESC")
+      else
+       @assignments = Assignment.all.order('created_at DESC')
+  
+       end
     end 
 
 	def show
 	end
 
 	def new
-		@assignment = Assignment.new
+		@assignment = current_user.assignments.build
 	end
 
 	def create
-		@assignment = Assignment.new(assignment_params)
+		@assignment = current_user.assignments.build(assignment_params)
 		if @assignment.save
 			InformMailer.info(@assignment).deliver_later
 			redirect_to @assignment
@@ -49,6 +56,6 @@ class AssignmentsController < ApplicationController
 	end
 
 	def assignment_params
-		params.require(:assignment).permit(:course_code,:course_name,:semister,:attachment, :course_id)
+		params.require(:assignment).permit(:course_code,:course_name,:semister,:attachment, :course_id, :search)
 	end
 end
