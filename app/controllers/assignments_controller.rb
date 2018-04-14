@@ -9,13 +9,7 @@ class AssignmentsController < ApplicationController
 		@course_id = Course.find_by(name: params[:course]).id
 		@assignments = Assignment.where(course_id: @course_id).order("created_at DESC")
 	  end
-	 @assignments = Assignment.all.order("created_at DESC")
-      if params[:search]
-     @assignments= Assignment.search(params[:search]).order("created_at DESC")
-      else
-       @assignments = Assignment.all.order('created_at DESC')
-  
-       end
+	 
     end 
 
 	def show
