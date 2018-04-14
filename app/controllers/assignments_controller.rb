@@ -2,8 +2,14 @@ class AssignmentsController < ApplicationController
 
 	before_action :find_assignment, only:[:show, :edit, :destroy, :update]
 	def index
-		@assignments = Assignment.all
-	end
+		if params[:course].blank?
+		@assignments = Assignment.all.order("created_at DESC")
+		
+	else
+		@course_id = Course.find_by(name: params[:course]).id
+		@assignments = Assignment.where(course_id: @course_id).order("created_at DESC")
+	  end
+    end 
 
 	def show
 	end
@@ -31,6 +37,11 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@assignment.destroy
+		redirect_to root_path, notice: "Successfully deleted assignment" 
+    end
+
 	private
 
 	def find_assignment
@@ -38,6 +49,6 @@ class AssignmentsController < ApplicationController
 	end
 
 	def assignment_params
-		params.require(:assignment).permit(:course_code,:course_name,:semister,:attachment)
+		params.require(:assignment).permit(:course_code,:course_name,:semister,:attachment, :course_id)
 	end
 end

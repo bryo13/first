@@ -4,6 +4,13 @@
   -@assignments.each do |assignment|
    =link_to assignment.course_code,assignment
    %br
-   =link_to "New Assignment",new_assignment_path
+
+
  .small-5.column
-  %h1 placeholder  
+  -Course.all.each do |course|
+   = link_to course.name, assignments_path(course: course.name), class: 'button success radius tiny'
+   |   
+
+
+
+=link_to "New Assignment",new_assignment_path,class:'button alert radius small'

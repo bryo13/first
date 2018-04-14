@@ -6,11 +6,16 @@
    .td=@assignment.course_name 
    .td=@assignment.semister
    .td=link_to 'Download link',@assignment.attachment_url
-   =link_to 'Edit',edit_assignment_path
-
+   =link_to 'Edit',edit_assignment_path, class:'button success radius small'
+   |
+   =link_to 'Back',assignments_path, class:'button success radius small' 
+   |
+   =link_to 'Delete',assignment_path,method: :delete, data:{confirm:"Are you sure?"}, class:'button success radius small'
 
 
  .small-3.column
-  %h4 Place holder 
+  -Course.all.each do |course|
+   = link_to course.name, assignments_path(course: course.name), class: 'button success radius tiny'
+   | 
 
 
