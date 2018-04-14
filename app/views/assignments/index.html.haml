@@ -1,6 +1,9 @@
 %h2 Assignments
-
--@assignments.each do |assignment|
- =link_to assignment.course_code,assignment
-%br
-=link_to "New Assignment",new_assignment_path
+.row
+ .small-7.column
+  -@assignments.each do |assignment|
+   =link_to assignment.course_code,assignment
+   %br
+   =link_to "New Assignment",new_assignment_path
+ .small-5.column
+  %h1 placeholder  

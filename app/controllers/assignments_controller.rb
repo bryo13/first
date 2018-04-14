@@ -15,6 +15,7 @@ class AssignmentsController < ApplicationController
 	def create
 		@assignment = Assignment.new(assignment_params)
 		if @assignment.save
+			InformMailer.info(@assignment).deliver_later
 			redirect_to @assignment
 		else
 			render 'new'
@@ -23,6 +24,7 @@ class AssignmentsController < ApplicationController
 
 	def update
 		if @assignment.update(assignment_params)
+			InformMailer.updat(@assignment).deliver_later
 			redirect_to @assignment
 		else 
 			render 'edit'
