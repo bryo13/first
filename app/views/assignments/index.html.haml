@@ -1,11 +1,11 @@
 
 .row
  .small-7.column
-  %h2 Assignments List
+  %h3 Assignments List
  
   -@assignments.each do |assignment|
-
-   %li=assignment.course_name
+    
+   %h5=assignment.course_name
    
    =link_to assignment.course_code,assignment
    %br
@@ -15,7 +15,7 @@
 
 
  .small-5.column
-  %h2 Course List
+  %h3 Course List
   -Course.all.each do |course|
    = link_to course.name, assignments_path(course: course.name), class: 'button success radius tiny'
    |   
