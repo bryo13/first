@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-
+	before_action :authenticate_user!,except:[:index, :show]
 	before_action :find_assignment, only:[:show, :edit, :destroy, :update]
 	def index
 		if params[:course].blank?

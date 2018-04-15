@@ -2,6 +2,7 @@
 
 .row
  .small-9.column
+  %h4 Assignment:
   .tr
    Course code:  
    .td=@assignment.course_code
@@ -15,7 +16,7 @@
    %br
 
   .tr
-   .one Lectures details:
+   %h4 Lectures details:
    .td=@assignment.user.email
    .td=@assignment.user.name
 
@@ -29,6 +30,7 @@
 
 
  .small-3.column
+  %h4 Course List:
   -Course.all.each do |course|
    = link_to course.name, assignments_path(course: course.name), class: 'button success radius tiny'
    | 
